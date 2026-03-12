@@ -3,9 +3,9 @@ on: workflow_dispatch
 
 jobs:
 
-  # ===========================================================================
+  # =======================================================================
   # Job : Build et push des images Docker vers GHCR
-  # ===========================================================================
+  # =======================================================================
   build-images:
     name: Build Images Docker
     runs-on: ubuntu-latest
@@ -14,14 +14,12 @@ jobs:
       contents: read
       packages: write
 
-    # --- Ne builder que sur un push (pas sur les PR) ---
-    # if: github.event_name == 'push'
-
     steps:
+      # --- Checkout du code ---
       - name: Checkout du code
         uses: actions/checkout@v6
 
-      # --- Configurer Docker Buildx (builder amélioré) ---
+      # --- Configurer Docker Buildx (builder avancé) ---
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v4
 
@@ -41,8 +39,8 @@ jobs:
           file: ./api/Dockerfile.prod
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/backend:latest
-            ghcr.io/${{ github.repository }}/backend:${{ github.sha }}
+            ghcr.io/seyjax2/yapuka-correction-seyjax/backend:latest
+            ghcr.io/seyjax2/yapuka-correction-seyjax/backend:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -54,8 +52,7 @@ jobs:
           file: ./front/Dockerfile.prod
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/frontend:latest
-            ghcr.io/${{ github.repository }}/frontend:${{ github.sha }}
+            ghcr.io/seyjax2/yapuka-correction-seyjax/frontend:latest
+            ghcr.io/seyjax2/yapuka-correction-seyjax/frontend:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      # --- test ---
