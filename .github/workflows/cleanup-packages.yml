@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         package-name:
-          - yapuka-symfony-react-app/frontend
-          - yapuka-symfony-react-app/backend
+        - ghcr.io/seyjax2/yapuka-correction-seyjax/frontend
+        - ghcr.io/seyjax2/yapuka-correction-seyjax/backend
 
     steps:
       - name: Delete old package versions
