@@ -156,3 +156,4 @@ jobs:
         with:
           name: backend-coverage
           path: api/coverage.xml
+          # --- Sauvegarder le rapport ---

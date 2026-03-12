@@ -76,3 +76,4 @@ jobs:
         with:
           name: trivy-reports
           path: "*.sarif"
+      # --- Sauvegarder le rapport ---
