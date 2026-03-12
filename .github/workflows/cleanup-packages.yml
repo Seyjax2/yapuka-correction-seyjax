@@ -1,6 +1,9 @@
 name: cleanup-packages
 on: workflow_dispatch
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   cleanup-packages:
     name: Cleanup old package versions
@@ -11,8 +14,8 @@ jobs:
     strategy:
       matrix:
         package-name:
-        - ghcr.io/seyjax2/yapuka-correction-seyjax/frontend
-        - ghcr.io/seyjax2/yapuka-correction-seyjax/backend
+          - frontend
+          - backend
 
     steps:
       - name: Delete old package versions
@@ -22,4 +25,3 @@ jobs:
           package-type: container
           min-versions-to-keep: 3
           delete-only-untagged-versions: false
-      # --- Sauvegarder le rapport ---
